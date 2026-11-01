@@ -1,0 +1,6 @@
+Python 3.12.10; Qiskit 2.6.1.
+20 identical-parameter circuit checks passed.
+Sunny scenario: aligned Python/browser parameters and selected-state probability agree within 1e-12.
+Exported Python ran end to end and generated OpenQASM.
+OpenQASM parsed in Qiskit and matched displayed probability for 0011.
+No hardware execution. Browser supports source disabling; CLI currently assumes all enabled.

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071624">
+  <meta name="description" content="QGrid Chirp — a QAOA-inspired renewable energy dispatch optimizer for Atomiq Hackathon 2026.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>QGrid Chirp — Quantum Renewable Dispatch</title>
+</head>
+<body>
+<main class="window" id="appWindow">
+  <header class="titlebar">
+    <div class="brand"><img src="favicon.svg" alt=""><div><b>QGrid Chirp</b><small>Quantum renewable dispatch studio</small></div></div>
+    <div class="window-meta"><span id="sizeLabel">1200 × 700</span><button class="ghost" id="normalBtn">Normal</button></div>
+    <div class="title-actions"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="bn">বাংলা</button><button class="icon-btn" id="maxBtn" aria-label="Maximize">□</button><button class="icon-btn" id="closeBtn" aria-label="Close">×</button></div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="identity"><span class="quantum-mark">Q</span><div><b>Atomiq Prototype</b><small>Qiskit Fall Fest 2026</small></div></div>
+      <nav aria-label="Main navigation">
+        <button class="nav active" data-page="dashboard"><span>⌂</span><em data-i18n="navDashboard">Dashboard</em></button>
+        <button class="nav" data-page="optimizer"><span>⌁</span><em data-i18n="navOptimizer">Optimizer</em></button>
+        <button class="nav" data-page="circuit"><span>ψ</span><em data-i18n="navCircuit">Circuit lab</em></button>
+        <button class="nav" data-page="method"><span>≡</span><em data-i18n="navMethod">Methodology</em></button>
+        <button class="nav" data-page="submission"><span>✓</span><em data-i18n="navSubmission">Submission kit</em></button>
+      </nav>
+      <div class="side-card"><span class="live-dot"></span><b data-i18n="simulatorReady">Simulator ready</b><small data-i18n="runsLocally">Runs locally in your browser</small></div>
+      <a class="event-link" href="https://atomiq-hackathon-qff-26-iem.devpost.com/" target="_blank" rel="noopener">Atomiq Hackathon ↗</a>
+    </aside>
+    <section class="workspace">
+      <div class="topline"><div><span class="eyebrow">QUANTUM · SUSTAINABILITY</span><h1 id="pageTitle">Grid mission control</h1><p id="pageSubtitle">Balance clean power, reliability and carbon with a four-qubit QAOA simulation.</p></div><button class="run-primary" id="globalRun">▶ <span data-i18n="runOptimizer">Run optimizer</span></button></div>
+      <div class="pages">
+        <section class="page active" id="page-dashboard">
+          <div class="hero-grid">
+            <article class="hero-card"><div><span class="pill">QAOA · 4 QUBITS</span><h2 data-i18n="heroTitle">Turn grid choices into quantum interference.</h2><p data-i18n="heroBody">QGrid Chirp encodes four energy resources as qubits, phases costly schedules, and amplifies cleaner combinations through a mixer circuit.</p><button class="secondary" data-jump="optimizer" data-i18n="openOptimizer">Open live optimizer →</button></div><div class="orbital" aria-hidden="true"><i></i><i></i><i></i><strong>ψ</strong></div></article>
+            <article class="score-card"><small data-i18n="latestResult">LATEST QUANTUM RESULT</small><strong id="heroScore">—</strong><span data-i18n="objectiveScore">objective score</span><div class="mini-stats"><div><b id="heroCoverage">—</b><small data-i18n="demandCoverage">Demand coverage</small></div><div><b id="heroCarbon">—</b><small>kg CO₂/h</small></div></div></article>
+          </div>
+          <div class="metric-grid">
+            <article><span>☀</span><div><small data-i18n="solarPotential">Solar potential</small><b id="dashSolar">42 MW</b></div></article>
+            <article><span>≈</span><div><small data-i18n="windPotential">Wind potential</small><b id="dashWind">34 MW</b></div></article>
+            <article><span>◇</span><div><small data-i18n="targetDemand">Target demand</small><b id="dashDemand">75 MW</b></div></article>
+            <article><span>⚛</span><div><small data-i18n="searchSpace">Search space</small><b>16 states</b></div></article>
+          </div>
+          <article class="panel story"><div><span class="eyebrow">CHI(R)PS &amp; QREATIVITY</span><h3 data-i18n="storyTitle">Noise becomes a signal, not just an error.</h3><p data-i18n="storyBody">The noise dial blends ideal measurement probabilities with a uniform channel. The changing “chirp” bars make hardware uncertainty visible while the optimizer tracks whether the selected dispatch remains useful.</p></div><div class="chirps" id="dashboardChirps" aria-label="Quantum probability chirps"></div></article>
+        </section>
+
+        <section class="page" id="page-optimizer">
+          <div class="optimizer-grid">
+            <article class="panel controls"><div class="section-head"><div><span class="eyebrow">INPUT MODEL</span><h2 data-i18n="scenarioControls">Grid scenario</h2></div><select id="preset" aria-label="Scenario preset"><option value="sunny">Sunny midday</option><option value="evening">Evening peak</option><option value="storm">Storm recovery</option></select></div>
+              <label><span data-i18n="demand">Demand</span><output id="demandOut">75 MW</output><input id="demand" type="range" min="35" max="120" value="75"></label>
+              <label><span data-i18n="carbonWeight">Carbon priority</span><output id="carbonOut">60%</output><input id="carbon" type="range" min="0" max="100" value="60"></label>
+              <label><span data-i18n="noiseLevel">Device noise</span><output id="noiseOut">8%</output><input id="noise" type="range" min="0" max="35" value="8"></label>
+              <div class="sources" id="sourceControls"></div>
+              <button class="run-primary wide" id="runBtn">▶ <span data-i18n="runQaoa">Run QAOA simulation</span></button>
+            </article>
+            <div class="results-stack">
+              <article class="panel result-panel"><div class="section-head"><div><span class="eyebrow">BEST MEASURED STATE</span><h2 id="bestState">— — — —</h2></div><span class="confidence" id="confidence">—</span></div><div class="result-metrics"><div><small data-i18n="powerSupplied">Power supplied</small><b id="powerResult">—</b></div><div><small data-i18n="coverage">Coverage</small><b id="coverageResult">—</b></div><div><small data-i18n="carbon">Carbon</small><b id="carbonResult">—</b></div><div><small data-i18n="objective">Objective</small><b id="objectiveResult">—</b></div></div><p id="resultNarrative">Run the simulation to measure an optimized dispatch state.</p><button class="secondary" id="downloadReport" disabled data-i18n="downloadReport">Download result report</button></article>
+              <article class="panel"><div class="section-head"><div><span class="eyebrow">MEASUREMENT DISTRIBUTION</span><h3 data-i18n="topStates">Top quantum states</h3></div><small>1024 shots</small></div><div class="probability-chart" id="probabilityChart"></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-circuit">
+          <div class="circuit-layout"><article class="panel"><span class="eyebrow">QAOA CIRCUIT</span><h2 data-i18n="circuitTitle">Two-layer variational circuit</h2><p data-i18n="circuitBody">Hadamard gates prepare all 16 schedules. Two alternating cost and RX mixer layers shape interference before measurement.</p><div class="circuit" id="circuitDiagram"></div><div class="legend"><span><i class="gate h">H</i> Superposition</span><span><i class="gate p">γ</i> Cost phase</span><span><i class="gate x">β</i> Mixer</span><span><i class="meter">◖</i> Measure</span></div></article><article class="panel params"><span class="eyebrow">OPTIMIZED PARAMETERS</span><div><small>γ₁, γ₂ · cost angles</small><b id="gammaValue">—</b></div><div><small>β₁, β₂ · mixer angles</small><b id="betaValue">—</b></div><div><small data-i18n="expectedCost">Expected normalized cost</small><b id="expectedValue">—</b></div><p data-i18n="paramNote">A deterministic seeded search selects four p=2 parameters. The downloadable Python implementation uses the same cost Hamiltonian with Qiskit.</p><a class="secondary" href="downloads/qgrid_chirp_qiskit.py" download>Download Qiskit source ↓</a></article></div>
+        </section>
+
+        <section class="page" id="page-method">
+          <div class="method-grid"><article class="panel"><span class="step">01</span><h3 data-i18n="m1t">Encode dispatch</h3><p data-i18n="m1b">Each qubit controls one resource: solar, wind, hydro or battery. A measured 1 means the source is dispatched.</p></article><article class="panel"><span class="step">02</span><h3 data-i18n="m2t">Score every state</h3><p data-i18n="m2b">The objective combines unmet demand, oversupply, carbon emissions and operational cost.</p></article><article class="panel"><span class="step">03</span><h3 data-i18n="m3t">Interfere &amp; measure</h3><p data-i18n="m3b">QAOA phases expensive states and mixes amplitudes so useful schedules become more probable.</p></article><article class="panel"><span class="step">04</span><h3 data-i18n="m4t">Stress with noise</h3><p data-i18n="m4b">A depolarizing channel reveals whether the dispatch remains stable under imperfect quantum hardware.</p></article></div>
+          <article class="panel formula"><div><span class="eyebrow">OBJECTIVE HAMILTONIAN</span><h2>C(z) = λ₁(D − P(z))² + λ₂CO₂(z) + λ₃Cost(z)</h2></div><p data-i18n="formulaBody">The squared balance term protects reliability. Adjustable carbon priority changes the diagonal cost landscape without hiding the trade-off.</p></article>
+          <article class="panel comparison"><div class="section-head"><div><span class="eyebrow">TRANSPARENCY</span><h3 data-i18n="classicalComparison">Classical cross-check</h3></div><span class="pill">EXACT 16-STATE AUDIT</span></div><p data-i18n="comparisonBody">Because this educational model has four qubits, QGrid Chirp also evaluates every state classically. This validates the quantum result and prevents exaggerated advantage claims.</p><div id="comparisonResult" class="comparison-result">Run the optimizer to compare results.</div></article>
+        </section>
+
+        <section class="page" id="page-submission">
+          <div class="submission-grid"><article class="panel checklist"><span class="eyebrow">DEVPOST READINESS</span><h2 data-i18n="submissionTitle">Submission checklist</h2><label><input type="checkbox" checked disabled> Public source-ready structure</label><label><input type="checkbox" checked disabled> MIT License</label><label><input type="checkbox" checked disabled> requirements.txt</label><label><input type="checkbox" checked disabled> Reproducible Qiskit implementation</label><label><input type="checkbox"> Public GitHub repository</label><label><input type="checkbox"> 1–2 minute public demo video</label><label><input type="checkbox"> Devpost form and team roles</label></article><article class="panel pitch"><span class="eyebrow">ELEVATOR PITCH</span><h2>Clean power, tuned by quantum chirps.</h2><p>QGrid Chirp turns renewable dispatch into a four-qubit cost landscape. Its QAOA simulator amplifies reliable, lower-carbon schedules while an interactive noise channel reveals how uncertainty changes the answer. Every result is classically audited, making the prototype creative, reproducible and honest.</p><button class="secondary" id="copyPitch" data-i18n="copyPitch">Copy pitch</button></article></div>
+          <article class="panel deadline"><div><span class="eyebrow">HARD DEADLINE</span><h2>11 Nov 2026 · 10:00 PM IST</h2><p>11:30 PM Bangladesh time (GMT+6)</p></div><a class="run-primary" href="https://atomiq-hackathon-qff-26-iem.devpost.com/" target="_blank" rel="noopener">Open Devpost ↗</a></article>
+        </section>
+      </div>
+    </section>
+  </div>
+  <footer><span><i class="live-dot"></i><b data-i18n="footerReady">Local simulator ready</b></span><span id="footerSummary">No run yet</span><span>© 2026 BaharSoftBD · MIT</span></footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
